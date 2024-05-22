@@ -11,34 +11,34 @@ import javax.crypto.spec.SecretKeySpec;
 public class EncryptionService {
 	private static final String ALGORITHM = "AES";
     private static final String SECRET_KEY = "mhSlp0HFiHgmrG3BCnhAUKHOzo0Ks3uzU3w77ee2OoE=";
-	public static String encrypt_password(String password){
-        StringBuilder encrypted = new StringBuilder();
-        for(int i=0;i<password.length();i++){
-            char c=password.charAt(i);
-            if(password.charAt(i)>'A' && password.charAt(i)<'Z'){
-                encrypted.append((char)(c+1));
-            }
-            else if(c=='Z'){
-                encrypted.append('A');
-            }
-            else if(c>='a' && c<'z'){
-                encrypted.append((char)(c+1));
-            }
-            else if(c=='z'){
-                encrypted.append('a');
-            }
-            else if(c>='0' && c<'9'){
-                encrypted.append((char)(c+1));
-            }
-            else if(c=='9'){
-                encrypted.append('0');
-            }
-            else {
-                encrypted.append(c);
-            }
-        }
-        return encrypted.toString();
-    }
+//	public static String encrypt_password(String password){
+//        StringBuilder encrypted = new StringBuilder();
+//        for(int i=0;i<password.length();i++){
+//            char c=password.charAt(i);
+//            if(password.charAt(i)>'A' && password.charAt(i)<'Z'){
+//                encrypted.append((char)(c+1));
+//            }
+//            else if(c=='Z'){
+//                encrypted.append('A');
+//            }
+//            else if(c>='a' && c<'z'){
+//                encrypted.append((char)(c+1));
+//            }
+//            else if(c=='z'){
+//                encrypted.append('a');
+//            }
+//            else if(c>='0' && c<'9'){
+//                encrypted.append((char)(c+1));
+//            }
+//            else if(c=='9'){
+//                encrypted.append('0');
+//            }
+//            else {
+//                encrypted.append(c);
+//            }
+//        }
+//        return encrypted.toString();
+//    }
 	
 	
 	
@@ -68,13 +68,13 @@ public class EncryptionService {
 	    }
 	    
 	    public static String AddPadding(int number) {
-	        String accountString = String.valueOf(number);
-	        int paddingLength = 16 - (accountString.length() % 16);
-	        StringBuilder paddedAccount = new StringBuilder(accountString);
+	        String string = String.valueOf(number);
+	        int paddingLength = 16 - (string.length() % 16);
+	        StringBuilder paddedString = new StringBuilder(string);
 	        for (int i = 0; i < paddingLength; i++) {
-	            paddedAccount.append(' '); 
+	            paddedString.append(' '); 
 	        }
-	        return paddedAccount.toString();
+	        return paddedString.toString();
 	    }
 	    
 	    public static String AddPadding(String string) {

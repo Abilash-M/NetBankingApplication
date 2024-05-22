@@ -45,8 +45,8 @@ public class ChangePasswordAction extends ActionSupport implements SessionAware{
 //		System.out.println(password);
 
 
-		if(getNewPassword().equals(getConfirmNewPassword()) && password.equals(EncryptionService.encrypt_password(getOldPassword()))) {
-			if((AccountsDao.ChangeNetBankingPassword(AccountNumber,EncryptionService.encrypt_password(getNewPassword())))>0) {
+		if(getNewPassword().equals(getConfirmNewPassword()) && password.equals(EncryptionService.encrypt(getOldPassword()))) {
+			if((AccountsDao.ChangeNetBankingPassword(AccountNumber,EncryptionService.encrypt(getNewPassword())))>0) {
 				return SUCCESS;
 			}
 		}
