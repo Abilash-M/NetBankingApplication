@@ -22,7 +22,8 @@ public class AccountsDao {
             values.put("ResidentialAddress", address);
             values.put("ResidentialCity", city);
             values.put("NetBankingUserId", userId);
-            values.put("NetBankingPassword", EncryptionService.encrypt_password(password));
+          values.put("NetBankingPassword", EncryptionService.encrypt(password));
+//            values.put("NetBankingPassword", EncryptionService.encrypt_password(password));
             values.put("DateOfBirth", DateOfBirth);
             values.put("AccountBalance", AccountBalance);
             int rowsInserted = DatabaseConnection.insert(connection, "AccountDetailsTable", values);

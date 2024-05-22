@@ -34,7 +34,9 @@ public class ChangePasswordAction extends ActionSupport implements SessionAware{
 	}
 	@Override
 	public String execute() throws Exception {
-		int AccountNumber=(int)session.get("accountNumber"); 
+//		int AccountNumber=(int)session.get("accountNumber"); 
+        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+
 		String password=AccountsDao.getNetBankingPassword(AccountNumber);
 //		System.out.println(AccountNumber);
 //		System.out.println(OldPassword);

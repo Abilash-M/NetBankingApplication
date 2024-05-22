@@ -25,7 +25,8 @@ public class LoginService {
             NetBankingUserName=(String)row.get("NetBankingUserId");
             NetBankingPassword=(String)row.get("NetBankingPassword");
         }
-        if(NetBankingUserName.equals(userName) && NetBankingPassword.equals(EncryptionService.encrypt_password(password))) {
+//        if(NetBankingUserName.equals(userName) && NetBankingPassword.equals(EncryptionService.encrypt_password(password))) {
+        if(NetBankingUserName.equals(userName) && NetBankingPassword.equals(EncryptionService.encrypt(password))) {
         	return true;
         }
         else {

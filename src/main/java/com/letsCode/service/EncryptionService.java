@@ -1,7 +1,16 @@
 //$Id$
 package com.letsCode.service;
 
+import java.security.Key;
+import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
 public class EncryptionService {
+	private static final String ALGORITHM = "AES";
+    private static final String SECRET_KEY = "mhSlp0HFiHgmrG3BCnhAUKHOzo0Ks3uzU3w77ee2OoE=";
 	public static String encrypt_password(String password){
         StringBuilder encrypted = new StringBuilder();
         for(int i=0;i<password.length();i++){
@@ -30,4 +39,58 @@ public class EncryptionService {
         }
         return encrypted.toString();
     }
+	
+	
+	
+	public static String encrypt(String string) throws Exception {
+		string=AddPadding(string);
+        Key key = getKey();
+        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        byte[] encryptedBytes = cipher.doFinal(string.getBytes());
+        return Base64.getEncoder().encodeToString(encryptedBytes);
+    }
+
+    public static String decrypt(String encryptedstring) throws Exception {
+        Key key = getKey();
+        Cipher cipher = Cipher.getInstance(ALGORITHM);
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedstring));
+        String decryptedString= new String(decryptedBytes);
+        return removePadding(decryptedString);
+        
+    }
+
+
+	    private static SecretKey getKey() {
+	        byte[] decodedKey = Base64.getDecoder().decode(SECRET_KEY);
+	        return new SecretKeySpec(decodedKey,0,decodedKey.length,ALGORITHM);
+	    }
+	    
+	    public static String AddPadding(int number) {
+	        String accountString = String.valueOf(number);
+	        int paddingLength = 16 - (accountString.length() % 16);
+	        StringBuilder paddedAccount = new StringBuilder(accountString);
+	        for (int i = 0; i < paddingLength; i++) {
+	            paddedAccount.append(' '); 
+	        }
+	        return paddedAccount.toString();
+	    }
+	    
+	    public static String AddPadding(String string) {
+	        int paddingLength = 16 - (string.length() % 16);
+	        StringBuilder paddedstring = new StringBuilder(string);
+	        for(int i = 0; i<paddingLength; i++) {
+	        	paddedstring.append(' '); 
+	        }
+	        return paddedstring.toString();
+	    }
+	    
+	    public static String removePadding(String string) {
+	        String originalString = string.trim();
+//	        int originalAccountNumber = Integer.parseInt(originalString);
+	        return originalString;
+	    }
+
+
 }
