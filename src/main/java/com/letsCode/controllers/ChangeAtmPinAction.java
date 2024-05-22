@@ -37,7 +37,6 @@ public class ChangeAtmPinAction extends ActionSupport implements SessionAware{
 	}
 	@Override
 	public String execute() throws Exception {
-
         int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
 		int pin=AccountsDao.getAtmPin(AccountNumber);
 		if( pin==getOldPin()) {

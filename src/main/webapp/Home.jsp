@@ -14,34 +14,36 @@
 </head>
 <body>
 <%
-    if (session.getAttribute("loggedIn") == null) {
+    if (session.getAttribute("accountNumber") == null) {
         response.sendRedirect("loginPage"); 
     }
 %>
 
     <header>
         <nav>
-            <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-				<form action="logoutPage" method="post">
-            <input type="submit" value="Logout"/>
-        </form>
-            </ul>
+			  <ul class="nav nav-underline nav-fill">
+					  <li class="nav-item">
+					    <a class="nav-link" aria-current="page" href="#" onclick="loadSideBar('HomePages/Accounts')">Accounts</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" href="#" onclick="loadSideBar('HomePages/TransferFunds')">Transfer Funds</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" href="#" onclick="loadSideBar('HomePages/Deposits')">Deposits</a>
+					  </li>
+					  <li class="nav-item">
+							<form action="logoutPage" method="post">
+					            <input type="submit" value="Logout"/>
+						  </form>
+		  			  </li>
+			  
+			</ul>
         </nav>
     </header>
-
+	
     <div class="container">
-        <div class="sidebar">
-            <ul>
-                <li><a href="#" onclick="loadPage('AccountPages/BalanceEnquiry')">Balance Enquiry</a></li>
-                <li><a href="#" onclick="loadPage('AccountPages/AccountStatement')">AccountStatement</a></li>
-                <li><a href="#" onclick="loadPage('AccountPages/DownloadStatement')">Download Statement</a></li>
-                <li><a href="#" onclick="loadPage('AccountPages/ChangePassword')">Change Password</a></li>
-                <li><a href="#" onclick="loadPage('AccountPages/ChangeAtmPin')">Change ATM PIN</a></li>
-                
-            </ul>
+        <div class="sidebar" id="sideBar">
+            
         </div>
 
         <div class="main-content" id="mainContent">
@@ -59,6 +61,13 @@
                  .then(html => document.getElementById('mainContent').innerHTML = html)
                  .catch(error => console.error('Error loading page:', error));
         }
+        function loadSideBar(page) {
+        	document.getElementById('mainContent').innerHTML = "";
+            fetch(page + '.jsp')
+                .then(response => response.text())
+                .then(html => document.getElementById('sideBar').innerHTML = html)
+                .catch(error => console.error('Error loading page:', error));
+       }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     

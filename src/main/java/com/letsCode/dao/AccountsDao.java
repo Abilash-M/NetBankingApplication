@@ -33,6 +33,7 @@ public class AccountsDao {
             return false;
         }
     }
+	
 	public static int getAccountBalance(int accountNumber) throws Exception {
 		Connection connection = DatabaseConnection.initializeDatabaseConnection();
     	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber=?";
@@ -92,8 +93,8 @@ public class AccountsDao {
     	Connection connection = DatabaseConnection.initializeDatabaseConnection();
     	String sql = "SELECT * FROM DebitCreditCardTable WHERE AccountNumber=?";
     	int pin=0;
-        List<Map<String, Object>> result = DatabaseConnection.select(connection, sql,AccountNumber);
-        for (Map<String, Object> row : result) {
+        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql,AccountNumber);
+        for (Map<String, Object>row : result) {
             pin=(int)row.get("ATMPin");
         	
         }
