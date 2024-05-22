@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+    
+<!-- 
+<package name="login" namespace="/" extends="struts-default" >
+        <action name="loginPage" class="com.letsCode.Action.LoginAction" >
+            <result name= "success">/index.jsp</result>
+        </action>
+    </package>
+     -->    
+     
+     
+    <package name="default" namespace= "/" extends="struts-default">
+        <action name="loginPage" class="com.letsCode.controllers.LoginAction">
+            <result name="home">/Home.jsp</result>
+            <result name="login">/index.jsp</result>
+        </action>
+    </package>
+    
+    <package name="openacc" namespace="/" extends="struts-default">
+        <action name="openAccount" class="com.letsCode.controllers.OpenAccountsAction">
+			<result name="input">/OpenAccount.jsp</result>
+            <result name="success">/index.jsp</result>
+            <result name="error">/OpenAccount.jsp</result>
+        </action>
+    </package>
+    
+   <!--<package name="balancecheck" extends="struts-default">
+        <action name="balanceEnquiry" class="com.letsCode.controllers.BalanceEnquiryAction">
+            <result name="success">/balanceEnquiry.jsp</result>
+        </action>
+    </package> --> 
+    
+    <package name="logout" namespace="/" extends="struts-default">
+        <action name="logoutPage" class="com.letsCode.controllers.LogoutAction">
+            <result name="success">/index.jsp</result>
+        </action>
+    </package>
+    <package name="accountStatement" extends="struts-default">
+    <action name="fetchAccountStatement" class="com.letsCode.controllers.AccountStatementAction">
+        <result name="success">/AccountPages/AccountStatement.jsp</result>
+    </action>
+</package>
+<package name="changePassword" extends="struts-default">
+    <action name="ChangeNetBankingPassword" class="com.letsCode.controllers.ChangePasswordAction">
+        <result name="success">/Home.jsp</result>
+        <result name="error">/index.jsp</result>
+
+    </action>
+</package>
+
+<package name="changeAtmPin" extends="struts-default">
+    <action name="ChangeAtmPin" class="com.letsCode.controllers.ChangeAtmPinAction">
+        <result name="success">/Home.jsp</result>
+        <result name="error">/index.jsp</result>
+    </action>
+</package>
+
+ <package name="Databaseinitialization" namespace="/"  extends="struts-default">
+    <action name="initializeDatabase" class="com.letsCode.controllers.DatabaseInitializationAction">
+        <result name="success">/index.jsp</result>
+    </action>
+</package>
+    
+</struts>
