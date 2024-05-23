@@ -7,10 +7,11 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.dao.TransactionsDao;
+import com.letsCode.service.EncryptionService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AccountStatementAction extends ActionSupport implements SessionAware{
-	private int accountNumber;
+//	private int accountNumber;
     private Map<String, Object> session;
 
     
@@ -36,7 +37,9 @@ public class AccountStatementAction extends ActionSupport implements SessionAwar
 	}
 
 	public String execute() throws Exception {
-        transactions = TransactionsDao.getTransactions(FromDate, ToDate,getAccountNumber());
+        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+
+        transactions = TransactionsDao.getTransactions(FromDate, ToDate,AccountNumber);
         System.out.println(FromDate);
         return SUCCESS;
     }
@@ -47,11 +50,4 @@ public class AccountStatementAction extends ActionSupport implements SessionAwar
 		
 	}
 
-	public int getAccountNumber() {
-		return accountNumber;
-	}
-
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
-	}
 }
