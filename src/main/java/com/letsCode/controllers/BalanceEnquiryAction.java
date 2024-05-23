@@ -23,7 +23,6 @@ public class BalanceEnquiryAction extends ActionSupport implements SessionAware{
 		
 //		 Map<String, Object> session = ActionContext.getContext().getSession();
 
-	        // Retrieve data from the session
 //	        Object accountNumberObj = session.get("accountNumber");
 	        String accountNumberObj = (String)session.get("accountNumber");
             int accountNumber=Integer.parseInt((EncryptionService.decrypt(accountNumberObj)));

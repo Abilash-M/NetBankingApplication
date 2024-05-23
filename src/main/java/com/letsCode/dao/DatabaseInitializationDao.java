@@ -11,34 +11,33 @@ public class DatabaseInitializationDao {
 
 	    public static void initializeDatabase() throws Exception {
 	    	try {
-	    		createDatabaseIfNotExists();
-	            createTables();
-	            System.out.println("Database initialized successfully.");
+	    		CreateDatabaseIfNotExists();
+	            CreateTables();
+//	            System.out.println("Database initialized");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 	    	
 	    }
 	    
-	    private static void createDatabaseIfNotExists() throws SQLException, ClassNotFoundException {
+	    private static void CreateDatabaseIfNotExists() throws SQLException, ClassNotFoundException {
 	        try (Connection connection = DatabaseConnection.initializeDatabaseConnection();
 	             Statement statement = connection.createStatement()) {
-	            statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + DB_NAME);
+	            statement.executeUpdate("CREATE DATABASE IF NOT EXISTS "+DB_NAME);
 	        }
 	    }
 
-	    private static void createTables() throws Exception {
+	    private static void CreateTables() throws Exception {
 	    	try (Connection connection = DatabaseConnection.initializeDatabaseConnection();
 		             Statement statement = connection.createStatement()) {
-
 		            InputStream inputStream = DatabaseInitializationDao.class.getResourceAsStream("schema.sql");
 		            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		            String line;
-		            StringBuilder sqlBuilder = new StringBuilder();
-		            while ((line = reader.readLine()) != null) {
-		                sqlBuilder.append(line).append("\n");
+		            StringBuilder stringBuilder = new StringBuilder();
+		            while ((line = reader.readLine())!= null) {
+		                stringBuilder.append(line).append("\n");
 		            }
-		            String[] sqlCommands = sqlBuilder.toString().split(";");
+		            String[] sqlCommands = stringBuilder.toString().split(";");
 		            for (String sqlCommand : sqlCommands) {
 		                if (!sqlCommand.trim().isEmpty()) {
 		                    statement.execute(sqlCommand.trim());

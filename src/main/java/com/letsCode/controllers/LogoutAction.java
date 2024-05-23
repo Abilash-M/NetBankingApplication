@@ -11,7 +11,7 @@ public class LogoutAction extends ActionSupport implements SessionAware{
 
 	@Override
 	public String execute() throws Exception {
-		if (session != null) {
+		if(session != null) {
             session.clear(); 
         }
         return SUCCESS;

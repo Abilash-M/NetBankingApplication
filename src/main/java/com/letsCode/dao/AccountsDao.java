@@ -15,18 +15,18 @@ public class AccountsDao {
         	System.out.println();
             Connection connection = DatabaseConnection.initializeDatabaseConnection();
             Map<String, Object> values = new HashMap<>();
-            values.put("AccountNumber", accountNumber);
-            values.put("AccountHolderName", accountHolderName);
-            values.put("PhoneNumber", phoneNumber);
-            values.put("EmailId", email);
-            values.put("ResidentialAddress", address);
-            values.put("ResidentialCity", city);
-            values.put("NetBankingUserId", userId);
-          values.put("NetBankingPassword", EncryptionService.encrypt(password));
+            values.put("AccountNumber",accountNumber);
+            values.put("AccountHolderName",accountHolderName);
+            values.put("PhoneNumber",phoneNumber);
+            values.put("EmailId",email);
+            values.put("ResidentialAddress",address);
+            values.put("ResidentialCity",city);
+            values.put("NetBankingUserId",userId);
+          values.put("NetBankingPassword",EncryptionService.encrypt(password));
 //            values.put("NetBankingPassword", EncryptionService.encrypt_password(password));
-            values.put("DateOfBirth", DateOfBirth);
-            values.put("AccountBalance", AccountBalance);
-            int rowsInserted = DatabaseConnection.insert(connection, "AccountDetailsTable", values);
+            values.put("DateOfBirth",DateOfBirth);
+            values.put("AccountBalance",AccountBalance);
+            int rowsInserted = DatabaseConnection.insert(connection,"AccountDetailsTable",values);
             return rowsInserted > 0;
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -38,8 +38,8 @@ public class AccountsDao {
 		Connection connection = DatabaseConnection.initializeDatabaseConnection();
     	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber=?";
     	int Balance=0;
-        List<Map<String, Object>> result = DatabaseConnection.select(connection, sql,accountNumber);
-        for (Map<String, Object> row : result) {
+        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql,accountNumber);
+        for (Map<String, Object>row : result) {
             Balance=(int)row.get("AccountBalance");
             Integer accountBalanceInteger = (Integer) row.get("AccountBalance");
             if (accountBalanceInteger != null) {
