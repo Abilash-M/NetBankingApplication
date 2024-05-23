@@ -28,9 +28,9 @@
 					  <li class="nav-item">
 					    <a class="nav-link" href="#" onclick="loadSideBar('HomePages/TransferFunds')">Transfer Funds</a>
 					  </li>
-					  <li class="nav-item">
+	<%--	 		  <li class="nav-item">
 					    <a class="nav-link" href="#" onclick="loadSideBar('HomePages/Deposits')">Deposits</a>
-					  </li>
+					  </li>    --%>	
 					  <li class="nav-item">
 							<form action="logoutPage" method="post">
 					            <input type="submit" value="Logout"/>

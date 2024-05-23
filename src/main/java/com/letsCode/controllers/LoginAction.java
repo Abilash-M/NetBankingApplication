@@ -50,7 +50,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 	            System.out.println(dec);
 //        	System.out.println(EncryptionService.encrypt(EncryptionService.padAccountNumber(accountNumber)));
 //        	System.out.println(EncryptionService.removePadding((EncryptionService.decrypt(acc))) );
-            session.put("accountNumber", accountNumber);
+            session.put("accountNumber", EncryptedAccountNumber);
             session.put("loggedIn", true);
             return "home";
         } else {

@@ -57,6 +57,7 @@ public class EncryptionService {
         cipher.init(Cipher.DECRYPT_MODE, key);
         byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedstring));
         String decryptedString= new String(decryptedBytes);
+//        return new String(decryptedBytes);
         return removePadding(decryptedString);
         
     }

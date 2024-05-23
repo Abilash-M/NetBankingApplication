@@ -8,8 +8,8 @@
 </head>
 <body>
 	<ul>
-                <li><a href="#" onclick="loadPage('AccountPages/MobileTransfer')">To Account Number</a></li>
-                <li><a href="#" onclick="loadPage('AccountPages/AccountNumberTransfer')">To Mobile Number</a></li>
+                <li><a href="#" onclick="loadPage('AccountPages/AccountNumberTransfer')">To Account Number</a></li>
+                <li><a href="#" onclick="loadPage('AccountPages/MobileTransfer')">To Mobile Number</a></li>
      </ul>
 </body>
 </html>

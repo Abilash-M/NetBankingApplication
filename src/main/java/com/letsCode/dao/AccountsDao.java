@@ -110,5 +110,21 @@ public class AccountsDao {
         return rowsAffected;
     }
     
+    public static int getAccountNumberFromPhoneNumber(int PhoneNumber) throws Exception {
+    	Connection connection = DatabaseConnection.initializeDatabaseConnection();
+    	String sql = "SELECT * FROM AccountDetailsTable WHERE PhoneNumber=?";
+    	int accountNumber=0;
+        List<Map<String, Object>> result = DatabaseConnection.select(connection, sql,PhoneNumber);
+        for (Map<String, Object> row : result) {
+//            accountNumber=(int)row.get("AccountNumber");
+        	Integer accountNumberInteger = (Integer) row.get("AccountNumber");
+            if (accountNumberInteger != null) {
+                accountNumber = accountNumberInteger.intValue();
+            }
+        
+        }
+        return accountNumber;
+    }
+    
 	
 }
