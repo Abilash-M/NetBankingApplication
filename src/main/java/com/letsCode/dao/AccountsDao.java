@@ -126,5 +126,52 @@ public class AccountsDao {
         return accountNumber;
     }
     
+    
+    public static boolean debitAmountFromAccount(int FromAccountNumber,int Amount) throws Exception {
+    	Connection connection = DatabaseConnection.initializeDatabaseConnection();
+    	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber=?";
+    	int Balance=0;
+        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql, FromAccountNumber);
+        for (Map<String, Object>row : result) {
+            Balance=(int)row.get("AccountBalance");
+            Integer accountBalanceInteger = (Integer) row.get("AccountBalance");
+            if (accountBalanceInteger != null) {
+                Balance = accountBalanceInteger.intValue();
+            }
+        }
+        Balance -= Amount;
+        if(Balance>=0) {
+        	Map<String, Object> values = new HashMap<>();
+            values.put("AccountNumber", FromAccountNumber);
+            values.put("AccountBalance", Balance);
+            int rowsAffected = DatabaseConnection.update(connection, "AccountDetailsTable", values, "AccountNumber");
+            return true;
+
+        }
+        return false;
+
+    }
+	
+	public static void creditAmountToAccount(int ToAccountNumber,int Amount) throws Exception {
+    	Connection connection = DatabaseConnection.initializeDatabaseConnection();
+    	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber=?";
+    	int Balance=0;
+        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql, ToAccountNumber);
+        for (Map<String, Object>row : result) {
+            Balance=(int)row.get("AccountBalance");
+            Integer accountBalanceInteger = (Integer) row.get("AccountBalance");
+            if (accountBalanceInteger != null) {
+                Balance = accountBalanceInteger.intValue();
+            }
+        }
+        Balance += Amount;
+        	Map<String, Object> values = new HashMap<>();
+            values.put("AccountNumber", ToAccountNumber);
+            values.put("AccountBalance", Balance);
+            int rowsAffected = DatabaseConnection.update(connection, "AccountDetailsTable", values, "AccountNumber");
+
+
+    }
+
 	
 }

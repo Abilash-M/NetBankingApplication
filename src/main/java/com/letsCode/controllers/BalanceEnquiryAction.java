@@ -11,13 +11,13 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class BalanceEnquiryAction extends ActionSupport implements SessionAware{
-	private int accountNumber;
-    public int getAccountNumber() {
-		return accountNumber;
-	}
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
-	}
+//	private int accountNumber;
+//    public int getAccountNumber() {
+//		return accountNumber;
+//	}
+//	public void setAccountNumber(int accountNumber) {
+//		this.accountNumber = accountNumber;
+//	}
 	private Map<String, Object> session;
 	public String execute() throws Exception {
 		
