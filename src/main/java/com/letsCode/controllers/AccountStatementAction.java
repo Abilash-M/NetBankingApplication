@@ -10,7 +10,7 @@ import com.letsCode.dao.TransactionsDao;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AccountStatementAction extends ActionSupport implements SessionAware{
-//	private int accountNumber;
+	private int accountNumber;
     private Map<String, Object> session;
 
     
@@ -29,14 +29,14 @@ public class AccountStatementAction extends ActionSupport implements SessionAwar
 
     public String getToDate() {
 		return ToDate;
-	}
+	} 
 
 	public void setToDate(String toDate) {
 		ToDate = toDate;
 	}
 
 	public String execute() throws Exception {
-        transactions = TransactionsDao.getTransactions(FromDate, ToDate,123456);
+        transactions = TransactionsDao.getTransactions(FromDate, ToDate,getAccountNumber());
         System.out.println(FromDate);
         return SUCCESS;
     }
@@ -45,5 +45,13 @@ public class AccountStatementAction extends ActionSupport implements SessionAwar
 	public void setSession(Map<String, Object> session) {
         this.session = session;
 		
+	}
+
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 }
