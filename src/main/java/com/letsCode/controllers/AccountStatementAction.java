@@ -39,7 +39,7 @@ public class AccountStatementAction extends ActionSupport implements SessionAwar
 	public String execute() throws Exception {
         int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
         transactions = TransactionsDao.getTransactions(FromDate, ToDate,AccountNumber);
-        System.out.println(FromDate);
+//        System.out.println(FromDate);
         return SUCCESS;
     }
 
