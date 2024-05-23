@@ -28,7 +28,7 @@ public class BalanceEnquiryAction extends ActionSupport implements SessionAware{
 //            int accountNumber=Integer.parseInt((EncryptionService.decrypt(accountNumberObj)));
             int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
 
-            int balance = AccountsDao.getAccountBalance(accountNumber);
+            int balance = AccountsDao.getAccountBalance(AccountNumber);
             session.put("balance", balance);
             return SUCCESS;
 
