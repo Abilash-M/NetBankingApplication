@@ -24,31 +24,7 @@
 						<s:submit cssClass="btn btn-secondary btn-sm" value="View Statement" />
 				</s:form>
 						
-				<table class="table">
-                    <thead>
-                        <tr>
-                            <th>Transaction ID</th>
-                            <th>To</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Type</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-
-					<s:iterator value="transactions">
-					    <tr>
-					        <td><s:property value="TransactionId" /></td>
-					        <td><s:property value="ToAccountNumber" /></td>
-					        <td><s:property value="TransactionValue" /></td>
-					        <td><s:property value="TransactionDate" /></td>
-					        <td><s:property value="TransactionType" /></td>					        
-					    </tr>
-					</s:iterator>
-					                       
-                    </tbody>
-                </table>
+				
 			</div>
 		</div>
 		</div>

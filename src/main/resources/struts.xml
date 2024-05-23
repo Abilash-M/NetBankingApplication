@@ -44,7 +44,7 @@
     </package>
     <package name="accountStatement" extends="struts-default">
     <action name="fetchAccountStatement" class="com.letsCode.controllers.AccountStatementAction">
-        <result name="success">/AccountPages/AccountStatement.jsp</result>
+        <result name="success">/AccountPages/AccountStatementPage.jsp</result>
     </action>
 </package>
 <package name="changePassword" extends="struts-default">

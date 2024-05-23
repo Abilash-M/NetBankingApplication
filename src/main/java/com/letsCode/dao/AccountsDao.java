@@ -131,14 +131,7 @@ public class AccountsDao {
     	Connection connection = DatabaseConnection.initializeDatabaseConnection();
     	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber=?";
     	int Balance=0;
-        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql, FromAccountNumber);
-        for (Map<String, Object>row : result) {
-            Balance=(int)row.get("AccountBalance");
-            Integer accountBalanceInteger = (Integer) row.get("AccountBalance");
-            if (accountBalanceInteger != null) {
-                Balance = accountBalanceInteger.intValue();
-            }
-        }
+        Balance=FetchAccountBalance(FromAccountNumber);
         Balance -= Amount;
         if(Balance>=0) {
         	Map<String, Object> values = new HashMap<>();
@@ -156,7 +149,21 @@ public class AccountsDao {
     	Connection connection = DatabaseConnection.initializeDatabaseConnection();
     	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber=?";
     	int Balance=0;
-        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql, ToAccountNumber);
+        Balance=FetchAccountBalance(ToAccountNumber);
+        Balance += Amount;
+        	Map<String, Object> values = new HashMap<>();
+            values.put("AccountNumber", ToAccountNumber);
+            values.put("AccountBalance", Balance);
+            int rowsAffected = DatabaseConnection.update(connection, "AccountDetailsTable", values, "AccountNumber");
+
+
+    }
+	
+	public static int FetchAccountBalance(int AccountNumber) throws Exception {
+    	Connection connection = DatabaseConnection.initializeDatabaseConnection();
+    	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber=?";
+    	int Balance=0;
+        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql, AccountNumber);
         for (Map<String, Object>row : result) {
             Balance=(int)row.get("AccountBalance");
             Integer accountBalanceInteger = (Integer) row.get("AccountBalance");
@@ -164,11 +171,7 @@ public class AccountsDao {
                 Balance = accountBalanceInteger.intValue();
             }
         }
-        Balance += Amount;
-        	Map<String, Object> values = new HashMap<>();
-            values.put("AccountNumber", ToAccountNumber);
-            values.put("AccountBalance", Balance);
-            int rowsAffected = DatabaseConnection.update(connection, "AccountDetailsTable", values, "AccountNumber");
+       return Balance;
 
 
     }

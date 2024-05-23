@@ -41,7 +41,7 @@
         </nav>
     </header>
 	
-    <div class="container">
+    <div class="container" style="margin-left: 0">
         <div class="sidebar" id="sideBar">
             
         </div>

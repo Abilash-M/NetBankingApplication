@@ -63,3 +63,7 @@ footer {
     width: 100%;
     text-align: center;
 }
+
+.container{
+	margin-left: 0;
+}

@@ -28,9 +28,10 @@ public class MobileNumberFundTransferAction extends ActionSupport implements Ses
         LocalDate today = LocalDate.now();
         String todaysDate=today.toString();
 		 int ToAccountNumber=AccountsDao.getAccountNumberFromPhoneNumber(getToPhoneNumber());
-         int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(session.get("accountNumber")) )));
+         int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(session.get("accountNumber")))));
          int rows=TransactionsDao.transferFunds(AccountNumber, ToAccountNumber, getAmount(), todaysDate);
-
+         int balance=AccountsDao.getAccountBalance(AccountNumber);
+         session.put("balance", balance);
 		return SUCCESS;
 	}
 
