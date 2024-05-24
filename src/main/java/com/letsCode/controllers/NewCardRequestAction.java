@@ -27,7 +27,8 @@ public class NewCardRequestAction extends ActionSupport implements SessionAware{
 
         	}
         }
-		return ERROR;
+        return SUCCESS;
+//		return ERROR;//implement such that it shows the error of limit  exceeded for this  card type . block the existing card to apply for a new one  
 	}
 	public String getCardType() {
 		return CardType;
