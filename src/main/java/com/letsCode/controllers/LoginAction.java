@@ -1,6 +1,7 @@
 //$Id$
 package com.letsCode.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -9,6 +10,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.Model.Accounts;
 import com.letsCode.dao.AccountsDao;
+import com.letsCode.dao.CardsDao;
 import com.letsCode.service.EncryptionService;
 import com.letsCode.service.LoginService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -18,7 +20,6 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 	
     private Accounts account = new Accounts();
     private Map<String, Object> session;
-    
 
 
     public Accounts getAccount() {
@@ -42,6 +43,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 //        	AccountsDao accountsDao=new AccountsDao();
         	int accountNumber=AccountsDao.getAccountNumber(account.getNetBankingUserId());
 //        	int accountNumber=123456;
+
             int balance = AccountsDao.getAccountBalance(accountNumber);
             session.put("balance", balance);
 	            String EncryptedAccountNumber=EncryptionService.encrypt(String.valueOf(accountNumber));
@@ -69,4 +71,6 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 		this.session = session;
 		
 	}
+
+
 }

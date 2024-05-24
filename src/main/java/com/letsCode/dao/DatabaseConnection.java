@@ -108,5 +108,21 @@ public class DatabaseConnection {
 	    
 	    return rowsAffected;
 	}
-
+	    
+	    public static int delete(Connection conn, String table, Map<String, Object> conditions) throws Exception {
+	        StringBuilder queryBuilder = new StringBuilder("DELETE FROM `").append(table).append("` WHERE ");
+	        for (String column : conditions.keySet()) {
+	            queryBuilder.append("`").append(column).append("` = ? AND ");
+	        }
+	        queryBuilder.delete(queryBuilder.length() - 5, queryBuilder.length()); 
+	        
+	        try (PreparedStatement ps = conn.prepareStatement(queryBuilder.toString())) {
+	            int index = 1;
+	            for (Object value : conditions.values()) {
+	                ps.setObject(index++, value);
+	            }
+	            
+	            return ps.executeUpdate();
+	        }
+	    }
 }

@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `DebitCreditCardTable` (
   `Cvv` INT NULL,
   `NameOnCard` VARCHAR(45) NULL,
   `ATMPin` INT NULL,
+  `CardType` ENUM('Credit', 'Debit') NULL,
+  `CreditLimit` INT NULL,
   PRIMARY KEY (`CardId`),
   INDEX `AccountNumber_idx` (`AccountNumber` ASC) VISIBLE,
   CONSTRAINT `DebitCreditCardTable_AccountNumber`

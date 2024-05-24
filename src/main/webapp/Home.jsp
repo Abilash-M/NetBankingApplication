@@ -13,11 +13,11 @@
     
 </head>
 <body>
-<%
-    if (session.getAttribute("accountNumber") == null) {
-        response.sendRedirect("loginPage"); 
+<%--
+    if (session.get("accountNumber") == null) {
+        response.sendRedirect("/index.jsp"); 
     }
-%>
+--%>
 
     <header>
         <nav>
@@ -28,9 +28,9 @@
 					  <li class="nav-item">
 					    <a class="nav-link" href="#" onclick="loadSideBar('HomePages/TransferFunds')">Transfer Funds</a>
 					  </li>
-	<%--	 		  <li class="nav-item">
-					    <a class="nav-link" href="#" onclick="loadSideBar('HomePages/Deposits')">Deposits</a>
-					  </li>    --%>	
+		 		  <li class="nav-item">
+					    <a class="nav-link" href="#" onclick="loadSideBar('HomePages/Cards')">Cards</a>
+					  </li>    
 					  <li class="nav-item">
 							<form action="logoutPage" method="post">
 					            <input type="submit" value="Logout"/>
@@ -47,6 +47,7 @@
         </div>
 
         <div class="main-content" id="mainContent">
+        
         </div>
     </div>
 

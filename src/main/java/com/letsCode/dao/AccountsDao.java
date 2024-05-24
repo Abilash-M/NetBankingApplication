@@ -175,6 +175,19 @@ public class AccountsDao {
 
 
     }
+	
+	public static String GetAccountHolderName(int AccountNumber) throws Exception {
+    	Connection connection = DatabaseConnection.initializeDatabaseConnection();
+    	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber=?";
+    	String Name="";
+        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql, AccountNumber);
+        for (Map<String, Object>row : result) {
+            Name=(String)row.get("AccountHolderName");            
+        }
+       return Name;
+
+
+    }
 
 	
 }

@@ -80,6 +80,20 @@
     </action>
 </package>
     
-    
-    
+ <package name="Fetchcards" namespace="/"  extends="struts-default">
+    <action name="FetchCard" class="com.letsCode.controllers.FetchCardAction">
+        <result name="success">AccountPages/BlockCard.jsp</result>
+    </action>
+</package>    
+
+  <package name="blockCard" namespace="/"  extends="struts-default">
+    <action name="BlockCard" class="com.letsCode.controllers.BlockCardAction">
+        <result name="success">/Home.jsp</result>
+    </action>
+</package>    
+  <package name="allotCard" namespace="/"  extends="struts-default">
+    <action name="AllotCard" class="com.letsCode.controllers.NewCardRequestAction">
+        <result name="success">/Home.jsp</result>
+    </action>
+</package>    
 </struts>
