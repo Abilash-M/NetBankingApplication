@@ -86,6 +86,12 @@
     </action>
 </package>    
 
+<package name="Fetchcardpinchange" namespace="/"  extends="struts-default">
+    <action name="FetchCardPinChange" class="com.letsCode.controllers.FetchCardAction">
+        <result name="success">AccountPages/ChangeAtmPin.jsp</result>
+    </action>
+</package>   
+
   <package name="blockCard" namespace="/"  extends="struts-default">
     <action name="BlockCard" class="com.letsCode.controllers.BlockCardAction">
         <result name="success">/Home.jsp</result>
@@ -95,5 +101,6 @@
     <action name="AllotCard" class="com.letsCode.controllers.NewCardRequestAction">
         <result name="success">/Home.jsp</result>
     </action>
-</package>    
+</package>   
+ 
 </struts>

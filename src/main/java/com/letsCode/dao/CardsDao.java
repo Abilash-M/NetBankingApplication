@@ -43,7 +43,7 @@ public class CardsDao {
         return rowsAffected;
     }
     
-    public static boolean AllotNewDebitCard(Card card) throws Exception {
+    public static boolean AllotNewCard(Card card) throws Exception {
     	Connection connection = DatabaseConnection.initializeDatabaseConnection();
         Map<String, Object> values = new HashMap<>();
         values.put("AccountNumber",card.getAccountNumber());

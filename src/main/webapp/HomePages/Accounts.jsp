@@ -12,7 +12,7 @@
                 <li><a href="#" onclick="loadPage('AccountPages/AccountStatement')">AccountStatement</a></li>
            <%--      <li><a href="#" onclick="loadPage('AccountPages/DownloadStatement')">Download Statement</a></li>			--%>
                 <li><a href="#" onclick="loadPage('AccountPages/ChangePassword')">Change Password</a></li>
-                <li><a href="#" onclick="loadPage('AccountPages/ChangeAtmPin')">Change ATM PIN</a></li>
+           <%--     <li><a href="#" onclick="loadPage('AccountPages/ChangeAtmPin')">Change ATM PIN</a></li>		--%>
                 
      </ul>
 </body>

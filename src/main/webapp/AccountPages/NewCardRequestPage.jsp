@@ -15,13 +15,21 @@
 			<div class="card-body">
 
 <s:form action="AllotCard" method="post">
-        <label for="CardSelect">Select Card Type </label>
 			<s:select 
 			class="form-control"
             id="CardTypeSelect" 
             cssClass="form-control" 
+            label="Select Card Type"
             list="#{'debit':'DebitCard','credit':'CreditCard'}" 
             name="CardType" 
+            onchange="updateHiddenInput(this.value)" />
+            <s:select 
+			class="form-control"
+            id="CreditLimitSelect" 
+            cssClass="form-control" 
+            label="Select Credit Limit"
+            list="#{0:'N/A',100000:100000,50000:50000}" 
+            name="CreditLimit" 
             onchange="updateHiddenInput(this.value)" />
                     <s:submit cssClass="btn btn-primary" value="Submit" />
         

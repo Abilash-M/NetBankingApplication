@@ -23,14 +23,14 @@
 			<div class="card-body">
 
 <s:form action="BlockCard" method="post">
-        <label for="CardSelect">Select Your Card </label>
         <s:select 
             id="CardSelect" 
             cssClass="form-control" 
+            label="Select Your Card"
             list="cards" 
             listKey="CardNumber" 
             listValue="CardNumber" 
-            name="CardNumber" />
+            name="CardNumber"/>
                     <s:submit cssClass="btn btn-primary" value="Submit" />
         
        

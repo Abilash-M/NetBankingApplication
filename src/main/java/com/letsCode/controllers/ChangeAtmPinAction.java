@@ -38,14 +38,20 @@ public class ChangeAtmPinAction extends ActionSupport implements SessionAware{
 	@Override
 	public String execute() throws Exception {
         int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
-		int pin=AccountsDao.getAtmPin(AccountNumber);
-		if( pin==getOldPin()) {
-			if((AccountsDao.ChangeAtmPin(AccountNumber,NewPin))>0) {
+		int pin=AccountsDao.getAtmPin(AccountNumber,getCardNumber());
+		System.out.println(pin);
+		System.out.println(getOldPin());
+		System.out.println(getNewPin());
+		System.out.println(CardNumber);
+		if(pin == getOldPin()) {
+			
+//			System.out.println(AccountsDao.ChangeAtmPin(AccountNumber,NewPin,CardNumber));
+			if((AccountsDao.ChangeAtmPin(AccountNumber,NewPin,getCardNumber()))>0) {
 				return SUCCESS;
 			}
 		}
 		return ERROR;
-		
+
 	}
 	@Override
 	public void setSession(Map<String, Object> session) {

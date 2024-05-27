@@ -89,11 +89,11 @@ public class AccountsDao {
         return rowsAffected;
     }
     
-    public static int getAtmPin(int AccountNumber) throws Exception {
+    public static int getAtmPin(int AccountNumber,int CardNumber) throws Exception {
     	Connection connection = DatabaseConnection.initializeDatabaseConnection();
-    	String sql = "SELECT * FROM DebitCreditCardTable WHERE AccountNumber=?";
+    	String sql = "SELECT * FROM DebitCreditCardTable WHERE AccountNumber = ? && CardNumber = ?";
     	int pin=0;
-        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql,AccountNumber);
+        List<Map<String, Object>>result = DatabaseConnection.select(connection, sql,AccountNumber,CardNumber);
         for (Map<String, Object>row : result) {
             pin=(int)row.get("ATMPin");
         	
@@ -101,13 +101,19 @@ public class AccountsDao {
         return pin;
     }
     
-    public static int ChangeAtmPin(int AccountNumber,int NewPin) throws Exception {
-    	Connection connection = DatabaseConnection.initializeDatabaseConnection();
-    	Map<String, Object> values = new HashMap<>();
-        values.put("ATMPin", NewPin);
-        values.put("AccountNumber", AccountNumber);
-        int rowsAffected = DatabaseConnection.update(connection, "DebitCreditCardTable", values, "AccountNumber");
-        return rowsAffected;
+    public static int ChangeAtmPin(int AccountNumber,int NewPin,int CardNumber) throws Exception {
+    	try {
+        	Connection connection = DatabaseConnection.initializeDatabaseConnection();
+        	Map<String, Object> values = new HashMap<>();
+            values.put("ATMPin", NewPin);
+           // values.put("AccountNumber", AccountNumber);
+            values.put("CardNumber", CardNumber);
+            int rowsAffected = DatabaseConnection.update(connection, "DebitCreditCardTable", values, "CardNumber");
+            return rowsAffected;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    		return 0;
     }
     
     public static int getAccountNumberFromPhoneNumber(int PhoneNumber) throws Exception {
@@ -187,6 +193,20 @@ public class AccountsDao {
        return Name;
 
 
+    }
+	
+    public static String getAccountHolderName(int AccountNumber) throws Exception {
+    	Connection connection = DatabaseConnection.initializeDatabaseConnection();
+    	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber =?";
+    	String name ="";
+    	List<Map<String, Object>> result = DatabaseConnection.select(connection, sql,AccountNumber);
+        for (Map<String, Object> row : result) {
+//            accountNumber=(int)row.get("AccountNumber");
+        	name = (String) row.get("AccountHolderName");
+           
+        
+        }
+        return name;
     }
 
 	

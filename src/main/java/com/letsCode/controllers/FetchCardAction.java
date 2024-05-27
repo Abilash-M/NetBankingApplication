@@ -16,10 +16,7 @@ public class FetchCardAction extends ActionSupport implements SessionAware{
 	@Override
 	public String execute() throws Exception {
         int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
-
-		setCards(CardsDao.FindCardFromAccountNumber(AccountNumber)); 
-
-		
+		setCards(CardsDao.FindCardFromAccountNumber(AccountNumber)); 		
 		return SUCCESS;
 	}
 

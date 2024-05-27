@@ -19,6 +19,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class LoginAction extends ActionSupport implements ModelDriven<Accounts>, SessionAware{
 	
     private Accounts account = new Accounts();
+    private String AccountHolderName;
     private Map<String, Object> session;
 
 
@@ -50,7 +51,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 	            System.out.println(EncryptedAccountNumber);
 	            int dec=Integer.parseInt(EncryptionService.removePadding((EncryptionService.decrypt(EncryptedAccountNumber))));
 	            System.out.println(dec);
-
+	            setAccountHolderName(AccountsDao.getAccountHolderName(accountNumber));
 //        	System.out.println(EncryptionService.encrypt(EncryptionService.padAccountNumber(accountNumber)));
 //        	System.out.println(EncryptionService.removePadding((EncryptionService.decrypt(acc))) );
             session.put("accountNumber", EncryptedAccountNumber);
@@ -70,6 +71,14 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 		
+	}
+
+	public String getAccountHolderName() {
+		return AccountHolderName;
+	}
+
+	public void setAccountHolderName(String accountHolderName) {
+		AccountHolderName = accountHolderName;
 	}
 
 
