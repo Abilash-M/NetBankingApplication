@@ -66,16 +66,17 @@ public class AccountStatementDownloadAction extends ActionSupport implements Ses
 	        Table table = new Table(colWidth);
 	        
      
-//	        table.addCell(new Cell().add(new Paragraph( "INVOICE")));
 	        
-//	        Cell cell1 = new Cell();   // Creating a cell 
-//	        cell1.add("Name");         // Adding content to the cell 
-//	        table.addCell(cell1);      // Adding cell to the table       
+	        Cell cell1 = new Cell();   
+          cell1.add(new Paragraph("Name"));
+
+//	        cell1.add("Name");         
+	        table.addCell(cell1);          
 //
 //	        // Adding cell 2 to the table Cell 
-//	        Cell cell2 = new Cell();       // Creating a cell 
-//	        cell2.add("Raju");        // Adding content to the cell 
-//	        table.addCell(cell2);     //
+//	        Cell cell2 = new Cell();      
+//	        cell2.add("Raju");        
+//	        table.addCell(cell2);     
 //	        table.addCell(new Cell().add(new Paragraph("To")));
 //	        table.addCell(new Cell().add("To"));
 
