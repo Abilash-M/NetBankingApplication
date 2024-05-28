@@ -23,6 +23,7 @@
 			<div class="card-body">
 
 <s:form action="BlockCard" method="post">
+		<s:textfield key="TransactionPassword" cssClass="form-control" label="Enter Your Transaction Password " />
         <s:select 
             id="CardSelect" 
             cssClass="form-control" 

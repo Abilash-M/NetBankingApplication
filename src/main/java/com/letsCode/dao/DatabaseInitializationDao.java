@@ -38,8 +38,8 @@ public class DatabaseInitializationDao {
 		                stringBuilder.append(line).append("\n");
 		            }
 		            String[] sqlCommands = stringBuilder.toString().split(";");
-		            for (String sqlCommand : sqlCommands) {
-		                if (!sqlCommand.trim().isEmpty()) {
+		            for (String sqlCommand : sqlCommands){
+		                if (!sqlCommand.trim().isEmpty()){
 		                    statement.execute(sqlCommand.trim());
 		                }
 		            }

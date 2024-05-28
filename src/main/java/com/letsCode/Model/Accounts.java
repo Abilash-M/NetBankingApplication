@@ -12,9 +12,10 @@ public class Accounts {
 	private String NetBankingPassword;
 	private String DateOfBirth;
 	private int AccountBalance;
+	private String TransactionPassword;
 	
 
-	public Accounts(int AccountNumber, String AccountHolderName, int PhoneNumber, String EmailId, String ResidentialAddress, String ResidentialCity, String NetBankingUserId, String NetBankingPassword, String DateOfBirth,int AccountBalance) {
+	public Accounts(int AccountNumber, String AccountHolderName, int PhoneNumber, String EmailId, String ResidentialAddress, String ResidentialCity, String NetBankingUserId, String NetBankingPassword, String DateOfBirth,int AccountBalance,String TransactionPassword) {
 		this.AccountNumber = AccountNumber;
 		this.AccountHolderName = AccountHolderName;
         this.PhoneNumber = PhoneNumber;
@@ -25,6 +26,22 @@ public class Accounts {
         this.NetBankingPassword =NetBankingPassword;
         this.DateOfBirth =DateOfBirth;
         this.AccountBalance=AccountBalance;
+        this.TransactionPassword=TransactionPassword;
+
+	}
+	
+	public Accounts(String AccountHolderName, int PhoneNumber, String EmailId, String ResidentialAddress, String ResidentialCity, String NetBankingUserId, String NetBankingPassword, String DateOfBirth,int AccountBalance,String TransactionPassword) {
+		this.AccountNumber = 0;
+		this.AccountHolderName = AccountHolderName;
+        this.PhoneNumber = PhoneNumber;
+        this.EmailId = EmailId;
+        this.ResidentialAddress = ResidentialAddress;
+        this.ResidentialCity =ResidentialCity;
+        this.NetBankingUserId =NetBankingUserId;
+        this.NetBankingPassword =NetBankingPassword;
+        this.DateOfBirth =DateOfBirth;
+        this.AccountBalance=AccountBalance;
+        this.TransactionPassword=TransactionPassword;
 
 	}
 	
@@ -39,6 +56,7 @@ public class Accounts {
         this.ResidentialCity =null;
         this.DateOfBirth =null;
         this.AccountBalance=0;
+        this.TransactionPassword=null;
 	}
 	public Accounts() {
 		this.AccountNumber = 0;
@@ -51,6 +69,8 @@ public class Accounts {
         this.NetBankingPassword =null;
         this.DateOfBirth =null;
         this.AccountBalance=0;
+        this.TransactionPassword=null;
+
 
 	}
 	public int getAccountNumber() {
@@ -116,6 +136,14 @@ public class Accounts {
 
 	public void setAccountBalance(int accountBalance) {
 		AccountBalance = accountBalance;
+	}
+
+	public String getTransactionPassword() {
+		return TransactionPassword;
+	}
+
+	public void setTransactionPassword(String transactionPassword) {
+		TransactionPassword = transactionPassword;
 	}
 
 }

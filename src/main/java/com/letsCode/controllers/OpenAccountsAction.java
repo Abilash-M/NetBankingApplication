@@ -21,10 +21,7 @@ public class OpenAccountsAction extends ActionSupport implements ModelDriven<Acc
 		@Override
 		public void validate() {
 //			if(!accounts.equals(null)) {
-			if ( accounts.getAccountNumber()==0) {
-	            addFieldError("AccountNumber", "Account Number is required");
-	            
-	        }
+
 			if (accounts.getAccountHolderName() == null || accounts.getAccountHolderName().trim().isEmpty()) {
 				addFieldError("AccountHolderName", "Account Holder Name is required");
 	            
@@ -47,6 +44,9 @@ public class OpenAccountsAction extends ActionSupport implements ModelDriven<Acc
 			if (accounts.getNetBankingPassword() == null || accounts.getNetBankingPassword().trim().isEmpty()) {
 	            addFieldError("NetBankingPassword", "NetBanking Password is required");	            
 	        }
+			if (accounts.getTransactionPassword() == null || accounts.getTransactionPassword().trim().isEmpty()) {
+	            addFieldError("TransactionPassword", "TransactionPassword is required");	            
+	        }
 			if (accounts.getDateOfBirth() == null ) {
 	            addFieldError("DateOfBirth", "Date Of Birth is required");	            
 	        }
@@ -68,7 +68,7 @@ public class OpenAccountsAction extends ActionSupport implements ModelDriven<Acc
 
 		public String execute() throws Exception {
 	        AccountsDao accountsDao = new AccountsDao();
-	        if(accountsDao.createAccount(accounts.getAccountNumber(),accounts.getAccountHolderName(), accounts.getPhoneNumber(), accounts.getEmailId(), accounts.getResidentialAddress(), accounts.getResidentialCity(), accounts.getNetBankingUserId(), accounts.getNetBankingPassword(),accounts.getDateOfBirth(),accounts.getAccountBalance())) {
+	        if(accountsDao.createAccount(accounts.getAccountHolderName(), accounts.getPhoneNumber(), accounts.getEmailId(), accounts.getResidentialAddress(), accounts.getResidentialCity(), accounts.getNetBankingUserId(), accounts.getNetBankingPassword(),accounts.getDateOfBirth(),accounts.getAccountBalance(),accounts.getTransactionPassword())) {
 	            return SUCCESS; 
 	        } else {
 	            return ERROR; 

@@ -7,22 +7,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.letsCode.service.CardService;
 import com.letsCode.service.EncryptionService;
 
 public class AccountsDao {
-	public boolean createAccount(int accountNumber, String accountHolderName, int phoneNumber, String email, String address, String city, String userId, String password,String DateOfBirth,int AccountBalance) throws Exception {
-        try {
+	public boolean createAccount( String accountHolderName, int phoneNumber, String email, String address, String city, String userId, String password,String DateOfBirth,int AccountBalance,String TransactionPassword) throws Exception {
+        try { 
         	System.out.println();
             Connection connection = DatabaseConnection.initializeDatabaseConnection();
             Map<String, Object> values = new HashMap<>();
-            values.put("AccountNumber",accountNumber);
+            values.put("AccountNumber",CardService.generateRandomNumber(9));
             values.put("AccountHolderName",accountHolderName);
             values.put("PhoneNumber",phoneNumber);
             values.put("EmailId",email);
             values.put("ResidentialAddress",address);
             values.put("ResidentialCity",city);
             values.put("NetBankingUserId",userId);
-          values.put("NetBankingPassword",EncryptionService.encrypt(password));
+            values.put("TransactionPassword", EncryptionService.encrypt(TransactionPassword));
+            values.put("NetBankingPassword",EncryptionService.encrypt(password));
 //            values.put("NetBankingPassword", EncryptionService.encrypt_password(password));
             values.put("DateOfBirth",DateOfBirth);
             values.put("AccountBalance",AccountBalance);
@@ -49,9 +51,9 @@ public class AccountsDao {
         return Balance; 
     }
 
-    public String getNetbankingPassword(int accountNumber) {
-                return ""; 
-    }
+//    public String getNetbankingPassword(int accountNumber) {
+//                return ""; 
+//    }
     
     public static int getAccountNumber(String NetBankingUserId) throws Exception {
     	Connection connection = DatabaseConnection.initializeDatabaseConnection();
@@ -75,6 +77,18 @@ public class AccountsDao {
         List<Map<String, Object>> result = DatabaseConnection.select(connection, sql,AccountNumber);
         for (Map<String, Object> row : result) {
             password=(String)row.get("NetBankingPassword");
+        	
+        }
+        return password;
+    }
+    
+    public static String getTransactionPassword(int AccountNumber) throws Exception {
+    	Connection connection = DatabaseConnection.initializeDatabaseConnection();
+    	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber=?";
+    	String password="";
+        List<Map<String, Object>> result = DatabaseConnection.select(connection, sql,AccountNumber);
+        for (Map<String, Object> row : result) {
+            password=(String)row.get("TransactionPassword");
         	
         }
         return password;

@@ -20,6 +20,7 @@
         <action name="loginPage" class="com.letsCode.controllers.LoginAction">
             <result name="home">/Home.jsp</result>
             <result name="login">/index.jsp</result>
+            <result name="input">/index.jsp</result>
         </action>
     </package>
     
@@ -59,6 +60,8 @@
     <action name="ChangeAtmPin" class="com.letsCode.controllers.ChangeAtmPinAction">
         <result name="success">/Home.jsp</result>
         <result name="error">/index.jsp</result>
+        <result name="input">AccountPages/ChangeAtmPin.jsp</result>
+        
     </action>
 </package>
 
@@ -92,7 +95,7 @@
     </action>
 </package>   
 
-  <package name="blockCard" namespace="/"  extends="struts-default">
+<package name="blockCard" namespace="/"  extends="struts-default">
     <action name="BlockCard" class="com.letsCode.controllers.BlockCardAction">
         <result name="success">/Home.jsp</result>
     </action>
@@ -102,5 +105,23 @@
         <result name="success">/Home.jsp</result>
     </action>
 </package>   
- 
+
+ <package name="Viewcard" namespace="/"  extends="struts-default">
+    <action name="ViewCards" class="com.letsCode.controllers.FetchCardAction">
+        <result name="success">AccountPages/ViewCards.jsp</result>
+    </action>
+</package>  
+
+<package name="downloadstatement" namespace="/" extends="struts-default">
+    <action name="DownloadStatement" class="com.letsCode.controllers.AccountStatementDownloadAction">
+		<result name="none" type="stream">
+            <param name="inputName">inputStream</param>
+            <param name="contentType">application/pdf</param>
+            <param name="contentDisposition">attachment;filename=StatementTable.pdf</param>
+            <param name="bufferSize">1024</param>
+        </result>
+    </action>
+</package>
+
+
 </struts>

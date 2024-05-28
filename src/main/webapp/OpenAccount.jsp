@@ -16,7 +16,6 @@
 			<div class="card-header text-center">Create Account</div>
 			<div class="card-body">
 				<s:form action="openAccount">
-						<s:textfield key="AccountNumber" cssClass="form-control" label="Enter your customised account number " />
 						<s:textfield key="AccountHolderName" cssClass="form-control" label="Enter your Name(As in aadhar card) " />
 						<s:textfield key="PhoneNumber" cssClass="form-control" label="Enter your Phone Number " />
 						<s:textfield key="EmailId" cssClass="form-control" label="Enter your email " />
@@ -24,6 +23,7 @@
 						<s:textfield key="ResidentialCity" cssClass="form-control" label="Enter your Residential City " />
 						<s:textfield key="NetBankingUserId" cssClass="form-control" label="Enter your NetBanking UserId " />
 						<s:password key="NetBankingPassword" cssClass="form-control" label="Enter Netbanking Password " />
+						<s:password key="TransactionPassword" cssClass="form-control" label="Enter Transaction Password " />						
  				 	    <s:textfield key="DateOfBirth" cssClass="form-control" label="Enter your DOB(as in aadhar card)" type="date" />
  						<s:textfield key="AccountBalance" cssClass="form-control" label="Opening Balance"  />
 						<s:submit cssClass="btn btn-primary" value="Create Account" />

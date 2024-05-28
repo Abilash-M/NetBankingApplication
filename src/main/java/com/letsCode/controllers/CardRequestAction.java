@@ -3,16 +3,19 @@ package com.letsCode.controllers;
 
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.service.EncryptionService;
 import com.opensymphony.xwork2.ActionSupport;
+
 
 public class CardRequestAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private String CardType;
 	@Override
 	public String execute() throws Exception {
+
         int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
         String CardType=getCardType();
         if(CardType.equals("Debit")) {

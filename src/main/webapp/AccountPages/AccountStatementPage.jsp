@@ -37,10 +37,19 @@
 					                       
                     </tbody>
                 </table>
-                <div style="position: relative; left: 760px; display: flex; align-items: center; gap: 20px; ">
+     <%--           <div style="position: relative; left: 760px; display: flex; align-items: center; gap: 20px; ">
                 		<a href="../Home.jsp" ><i class="fa-solid fa-house"></i></a>
    	                <button id="downloadTable" ><i class="fa-solid fa-download"></i></button>
                 </div>
+                 --%>
+    <div style="position: relative; left: 760px; display: flex; align-items: center; gap: 20px;">
+        <a href="../Home.jsp"><i class="fa-solid fa-house"></i></a>
+        <s:form action="DownloadStatement" >
+            <s:hidden name="FromDate" value="%{fromDate}"/>
+            <s:hidden name="ToDate" value="%{toDate}"/>
+            <s:submit value="Download Statement" cssClass="btn btn-primary"/>
+        </s:form>
+    </div>
 
     <script>
     document.getElementById('downloadTable').addEventListener('click', function() {

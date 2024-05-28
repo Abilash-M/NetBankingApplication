@@ -35,10 +35,15 @@ public class CardsDao {
     }
    
     public static int BlockCard(int CardNumber) throws Exception {
-    	Connection connection = DatabaseConnection.initializeDatabaseConnection();
-    	 Map<String, Object> Conditions = new HashMap<>();
-    	    Conditions.put("CardNumber",CardNumber);
-    	    int rowsAffected=DatabaseConnection.delete(connection, "DebitCreditCardTable", Conditions);
+    	    
+    	    Connection connection = DatabaseConnection.initializeDatabaseConnection();
+        	Map<String, Object> values = new HashMap<>();
+    	    values.put("CardNumber",CardNumber);
+            values.put("CardStatus", "Blocked");
+            values.put("CardNumber", CardNumber);
+            int rowsAffected = DatabaseConnection.update(connection, "DebitCreditCardTable", values, "CardNumber");
+
+
 
         return rowsAffected;
     }

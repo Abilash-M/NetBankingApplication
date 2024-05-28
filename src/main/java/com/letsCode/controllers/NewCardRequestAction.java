@@ -23,13 +23,13 @@ public class NewCardRequestAction extends ActionSupport implements SessionAware{
         System.out.println(CardsDao.FindCardFromAccountNumber(AccountNumber,CardType));
         if(CardsDao.FindCardFromAccountNumber(AccountNumber,CardType).isEmpty()) {
             if(CardType.equals("debit")) {
-        	Card card=new Card(AccountNumber,CardService.generateRandomNumber(9),CardService.generateExpiryDate(),CardService.generateRandomNumber(3),AccountsDao.GetAccountHolderName(AccountNumber),CardService.generateRandomNumber(4),"Debit",0);
+        	Card card=new Card(AccountNumber,CardService.generateRandomNumber(9),CardService.generateExpiryDate(),CardService.generateRandomNumber(3),AccountsDao.GetAccountHolderName(AccountNumber),CardService.generateRandomNumber(4),"Debit",0,"Active");
         	if(CardsDao.AllotNewCard(card)) {
         		return SUCCESS;
         	}
             }
             if(CardType.equals("credit")) {
-        	Card card=new Card(AccountNumber,CardService.generateRandomNumber(9),CardService.generateExpiryDate(),CardService.generateRandomNumber(3),AccountsDao.GetAccountHolderName(AccountNumber),CardService.generateRandomNumber(4),"Credit",CreditLimit);
+        	Card card=new Card(AccountNumber,CardService.generateRandomNumber(9),CardService.generateExpiryDate(),CardService.generateRandomNumber(3),AccountsDao.GetAccountHolderName(AccountNumber),CardService.generateRandomNumber(4),"Credit",CreditLimit,"Active");
         	if(CardsDao.AllotNewCard(card)) {
         		return SUCCESS;
         	}

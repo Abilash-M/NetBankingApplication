@@ -20,6 +20,7 @@
 			<div class="card-header text-center">Change ATM pin</div>
 			<div class="card-body">
 				<s:form action="ChangeAtmPin">
+						<s:textfield key="TransactionPassword" cssClass="form-control" label="Enter Your Transaction Password " />
 				        <s:select 
 				            id="CardSelect" 
 				            cssClass="form-control" 

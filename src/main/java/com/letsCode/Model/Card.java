@@ -10,9 +10,12 @@ public class Card {
 	private int ATMPIn;
 	private String CardType;
 	private int CreditLimit ;
+	private String CardStatus;
 	
 
-	public Card(int AccountNumber, int CardNumber, String ExpiryDate, int Cvv , String NameOnCard, int ATMPIn, String CardType, int CreditLimit) {
+
+
+	public Card(int AccountNumber, int CardNumber, String ExpiryDate, int Cvv , String NameOnCard, int ATMPIn, String CardType, int CreditLimit,String CardStatus) {
 		this.setAccountNumber(AccountNumber);
 		this.setCardNumber(CardNumber);
         this.setExpiryDate(ExpiryDate);
@@ -21,7 +24,7 @@ public class Card {
         this.setATMPIn(ATMPIn);
         this.setCardType(CardType);
         this.setCreditLimit(CreditLimit);
-
+        this.setCardStatus(CardStatus);
 
 	}
 	
@@ -34,6 +37,7 @@ public class Card {
         this.setATMPIn(0);
         this.setCardType("");
         this.setCreditLimit(0);
+        this.setCardStatus("");
 	}
 
 	public int getAccountNumber() {
@@ -98,5 +102,13 @@ public class Card {
 
 	public void setCardType(String cardType) {
 		CardType = cardType;
+	}
+	
+	public String getCardStatus() {
+		return CardStatus;
+	}
+
+	public void setCardStatus(String cardStatus) {
+		CardStatus = cardStatus;
 	}
 }

@@ -11,6 +11,7 @@
                 <li><a href="#" onclick="loadPage('AccountPages/NewCardRequestPage')">Request New Card</a></li>
                 <li><a href="FetchCard">Block Existing Card</a></li>
                 <li><a href="FetchCardPinChange">Change ATM PIN</a></li>
+                <li><a href="ViewCards">View My cards</a></li>
                 
      </ul>
 </body>

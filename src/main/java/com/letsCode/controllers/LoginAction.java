@@ -31,7 +31,21 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 		this.account = account;
 	}
 	
+	public void validate() {
+        int AccountNumber;
+		try {
+			AccountNumber=AccountsDao.getAccountNumber(account.getNetBankingUserId());
+			if (!AccountsDao.getNetBankingPassword(AccountNumber).equals(EncryptionService.encrypt(account.getNetBankingPassword()))) {
+				addFieldError("NetBankingPassword", "NetBanking Password is incorrect");
+			    
+			}
+		} catch (Exception e) {
+						e.printStackTrace();
+		}
+		
 
+		
+	}
 
 	
 	public String execute() throws Exception {

@@ -19,6 +19,4 @@ public class CardService {
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	        return ExpiryDate.format(formatter);
 	    }
-
-    
 }
