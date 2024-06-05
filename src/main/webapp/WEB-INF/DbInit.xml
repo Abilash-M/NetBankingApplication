@@ -205,7 +205,7 @@
 			<data-type>DATE</data-type>
 			<nullable>true</nullable>
 		</column>
-		
+	
 		
 		<column name="TransactionType">
 			<data-type>ENUM('Withdrawal','transfer')</data-type>

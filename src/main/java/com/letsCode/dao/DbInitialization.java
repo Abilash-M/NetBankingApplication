@@ -20,7 +20,6 @@ public class DbInitialization {
 	String primaryKeyColumnName = null;
 	public static void initializeTables() {
         try {
-//        	String fullPath = context.getRealPath("/WEB-INF/test/foo.txt");
 //        	System.out.println(StartupListener.class.getResource("../../../..").getPath());
         	String filepath=StartupListener.class.getResource("../../../../DbInit.xml").getPath();
             File xmlFile=new File(filepath);
@@ -29,7 +28,7 @@ public class DbInitialization {
             Document doc=dBuilder.parse(xmlFile);
             doc.getDocumentElement().normalize();
             NodeList tableList = doc.getElementsByTagName("table");
-            for (int i = 0;i<tableList.getLength();i++) {
+            for(int i=0; i<tableList.getLength(); i++) {
                 Node tableNode = tableList.item(i);
                 if(tableNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element tableElement =(Element) tableNode;
