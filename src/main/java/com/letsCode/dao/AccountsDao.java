@@ -225,11 +225,12 @@ public class AccountsDao {
     
     public static Boolean checkIfAccountExists(String NetBankingUserId ) throws Exception {
     	Connection connection = DatabaseConnection.initializeDatabaseConnection();
-    	String sql = "SELECT * FROM AccountDetailsTable WHERE AccountNumber =?";
+    	String sql = "SELECT * FROM AccountDetailsTable WHERE NetBankingUserId =?";
     	String name ="";
     	List<Map<String, Object>> result = DatabaseConnection.select(connection, sql,NetBankingUserId );
         for (Map<String, Object> row : result) {
 //            accountNumber=(int)row.get("AccountNumber");
+        	System.out.println("its printing");
         	return true;
            
         

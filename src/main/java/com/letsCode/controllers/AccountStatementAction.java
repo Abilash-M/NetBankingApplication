@@ -41,15 +41,17 @@ public class AccountStatementAction extends ActionSupport implements SessionAwar
 	}
 
 	public String execute() throws Exception {
-		String NetBankingUserId=(EncryptionService.decrypt((String)session.get("NetBankingUserId")));
+		System.out.println(session);
+//		String NetBankingUserId=(EncryptionService.decrypt((String)session.get("NetBankingUserId")));
 //		System.out.println(NetBankingUserId);
-		if(NetBankingUserId==null) {
-	        HttpServletResponse res = ServletActionContext.getResponse();
-	        res.sendRedirect("/index.jsp");
-		}
+//		if(NetBankingUserId==null) {
+//	        HttpServletResponse res = ServletActionContext.getResponse();
+//	        res.sendRedirect("/index.jsp");
+//		}
         int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
         transactions = TransactionsDao.getTransactions(FromDate, ToDate,AccountNumber);
 //        System.out.println(FromDate);
+        System.out.println(session);
         return SUCCESS;
     }
 

@@ -4,6 +4,7 @@ package com.letsCode.controllers;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
@@ -40,7 +41,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 			    
 			}
 		} catch (Exception e) {
-						e.printStackTrace();
+				e.printStackTrace();
 		}
 		
 
@@ -69,9 +70,17 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 	            setAccountHolderName(AccountsDao.getAccountHolderName(accountNumber));
 //        	System.out.println(EncryptionService.encrypt(EncryptionService.padAccountNumber(accountNumber)));
 //        	System.out.println(EncryptionService.removePadding((EncryptionService.decrypt(acc))) );
+	            
+	        HttpSession httpsession = ServletActionContext.getRequest().getSession();
+	        httpsession.setAttribute("NetBankingUserId", EncryptedNetBankingUserId);
+	            System.out.println(httpsession);
+	            System.out.println(httpsession.getAttribute("NetBankingUserId"));
 	        session.put("NetBankingUserId", EncryptedNetBankingUserId);
             session.put("accountNumber", EncryptedAccountNumber);
             session.put("loggedIn", true);
+            System.out.println("httpsession is  " + httpsession);
+            System.out.println("session is" + session);
+
             return "home";
         } else {
             return "login";
