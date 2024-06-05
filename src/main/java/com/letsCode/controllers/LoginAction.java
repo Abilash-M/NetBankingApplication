@@ -62,12 +62,14 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
             int balance = AccountsDao.getAccountBalance(accountNumber);
             session.put("balance", balance);
 	            String EncryptedAccountNumber=EncryptionService.encrypt(String.valueOf(accountNumber));
+	            String EncryptedNetBankingUserId=EncryptionService.encrypt(account.getNetBankingUserId());
 	            System.out.println(EncryptedAccountNumber);
 	            int dec=Integer.parseInt(EncryptionService.removePadding((EncryptionService.decrypt(EncryptedAccountNumber))));
-	            System.out.println(dec);
+//	            System.out.println(dec);
 	            setAccountHolderName(AccountsDao.getAccountHolderName(accountNumber));
 //        	System.out.println(EncryptionService.encrypt(EncryptionService.padAccountNumber(accountNumber)));
 //        	System.out.println(EncryptionService.removePadding((EncryptionService.decrypt(acc))) );
+	        session.put("NetBankingUserId", EncryptedNetBankingUserId);
             session.put("accountNumber", EncryptedAccountNumber);
             session.put("loggedIn", true);
             return "home";

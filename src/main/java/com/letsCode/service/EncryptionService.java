@@ -52,6 +52,10 @@ public class EncryptionService {
     }
 
     public static String decrypt(String encryptedstring) throws Exception {
+//    	System.out.println( "the string is" +encryptedstring + "ends here");
+    	if(encryptedstring.equals(null) || encryptedstring.equals("")) {
+    		return "";
+    	}
         Key key = getKey();
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key);
@@ -79,6 +83,7 @@ public class EncryptionService {
 	    }
 	    
 	    public static String AddPadding(String string) {
+	    	
 	        int paddingLength = 16 - (string.length() % 16);
 	        StringBuilder paddedstring = new StringBuilder(string);
 	        for(int i = 0; i<paddingLength; i++) {

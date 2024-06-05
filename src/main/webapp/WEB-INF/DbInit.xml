@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<database>
+
+
+<table name="AccountDetailsTable">
+	<columns>
+		<column name="AccountNumber">
+			<data-type>INTEGER</data-type>
+			<nullable>false</nullable>
+			<primary-key>true</primary-key>
+			<unique>true</unique>
+		</column>
+
+		<column name="AccountHolderName">
+			<data-type>VARCHAR(45)</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+
+		<column name="PhoneNumber">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+		
+		
+		<column name="EmailId">
+			<data-type>VARCHAR(45)</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+		
+		
+		<column name="ResidentialAddress">
+			<data-type>VARCHAR(45)</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+		
+		
+		
+		<column name="ResidentialCity">
+			<data-type>VARCHAR(45)</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+		
+		
+		
+		<column name="NetBankingUserId">
+			<data-type>VARCHAR(45)</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+		
+		<column name="NetBankingPassword">
+			<data-type>VARCHAR(45)</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+		
+		<column name="DateOfBirth">
+			<data-type>DATE</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+		
+		<column name="AccountBalance">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+		
+		<column name="TransactionPassword">
+			<data-type>VARCHAR(45)</data-type>
+			<nullable>true</nullable>
+			<primary-key>false</primary-key>
+			<unique>false</unique>
+		</column>
+		
+	</columns>
+
+
+</table>
+
+
+
+<table name="DebitCreditCardTable">
+	<columns>
+		<column name="CardId">
+			<data-type>INTEGER</data-type>
+			<nullable>false</nullable>
+			<primary-key>true</primary-key>
+			<auto-increment>true</auto-increment>
+		</column>
+
+		<column name="AccountNumber">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+			<foreign-key>true</foreign-key>
+			<reference-table>AccountDetailsTable</reference-table>
+			<reference-column>AccountNumber</reference-column>
+		</column>
+
+		<column name="CardNumber">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+			<unique>false</unique>
+		</column>
+		
+		
+		<column name="ExpiryDate">
+			<data-type>DATE</data-type>
+			<nullable>true</nullable>
+		</column>
+		
+		
+		<column name="Cvv">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+		</column>
+		
+		
+		
+		<column name="NameOnCard">
+			<data-type>VARCHAR(45)</data-type>
+			<nullable>true</nullable>
+		</column>
+		
+		
+		
+		<column name="ATMPin">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+		</column>
+		
+		<column name="CardType">
+			<data-type>ENUM('Credit','Debit')</data-type>
+			<nullable>true</nullable>
+		</column>
+		
+		<column name="CreditLimit">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+			<default-value>0</default-value>
+		</column>
+		
+		<column name="CardStatus">
+			<data-type>ENUM('Active','Inactive','Blocked')</data-type>
+			<nullable>true</nullable>
+			<default-value>'Active'</default-value>
+		</column>
+		
+
+		
+	</columns>
+
+
+</table>
+
+
+
+<table name="TransactionTable">
+	<columns>
+		<column name="TransactionId">
+			<data-type>INTEGER</data-type>
+			<nullable>false</nullable>
+			<primary-key>true</primary-key>
+			<auto-increment>true</auto-increment>
+		</column>
+
+		<column name="FromAccountNumber">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+			<foreign-key>true</foreign-key>
+			<reference-table>AccountDetailsTable</reference-table>
+			<reference-column>AccountNumber</reference-column>
+		</column>
+		
+		<column name="ToAccountNumber">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+			<foreign-key>true</foreign-key>
+			<reference-table>AccountDetailsTable</reference-table>
+			<reference-column>AccountNumber</reference-column>
+		</column>
+
+		<column name="TransactionValue">
+			<data-type>INTEGER</data-type>
+			<nullable>true</nullable>
+		</column>
+		
+		
+		<column name="TransactionDate">
+			<data-type>DATE</data-type>
+			<nullable>true</nullable>
+		</column>
+		
+		
+		<column name="TransactionType">
+			<data-type>ENUM('Withdrawal','transfer')</data-type>
+			<nullable>true</nullable>
+		</column>
+		
+		
+	</columns>
+
+
+</table>
+
+
+</database>
+

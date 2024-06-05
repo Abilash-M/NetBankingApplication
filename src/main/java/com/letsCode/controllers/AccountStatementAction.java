@@ -4,6 +4,10 @@ package com.letsCode.controllers;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.dao.TransactionsDao;
@@ -37,6 +41,12 @@ public class AccountStatementAction extends ActionSupport implements SessionAwar
 	}
 
 	public String execute() throws Exception {
+		String NetBankingUserId=(EncryptionService.decrypt((String)session.get("NetBankingUserId")));
+//		System.out.println(NetBankingUserId);
+		if(NetBankingUserId==null) {
+	        HttpServletResponse res = ServletActionContext.getResponse();
+	        res.sendRedirect("/index.jsp");
+		}
         int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
         transactions = TransactionsDao.getTransactions(FromDate, ToDate,AccountNumber);
 //        System.out.println(FromDate);

@@ -61,15 +61,18 @@ public class AccountStatementDownloadAction extends ActionSupport implements Ses
 	        PdfDocument pdf = new PdfDocument(writer);
 	        Document document = new Document(pdf);
 //	        Table table = new Table(5);
-	        
+	        pdf.addNewPage();
+
 	        float colWidth[]= {80,300,100,80};
 	        Table table = new Table(colWidth);
 	        
-     
+	     //   String para = "Its working"; 
+	     // Creating an Area Break    
+	  //   Paragraph parag = new Paragraph (para); 
 	        
 	        Cell cell1 = new Cell();   
           cell1.add(new Paragraph("Name"));
-
+//
 //	        cell1.add("Name");         
 	        table.addCell(cell1);          
 //

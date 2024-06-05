@@ -22,6 +22,10 @@
             <result name="login">/index.jsp</result>
             <result name="input">/index.jsp</result>
         </action>
+        
+        <action name="logoutPage" class="com.letsCode.controllers.LogoutAction">
+            <result name="success">/index.jsp</result>
+        </action>
     </package>
     
     <package name="openacc" namespace="/" extends="struts-default">
@@ -39,81 +43,96 @@
     </package> --> 
     
     <package name="logout" namespace="/" extends="struts-default">
-        <action name="logoutPage" class="com.letsCode.controllers.LogoutAction">
-            <result name="success">/index.jsp</result>
-        </action>
+    	
+    	
+    	
+        
     </package>
     <package name="accountStatement" extends="struts-default">
+		
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+				class="com.letsCode.Interceptors.AuthenticationInterceptor" />
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authenticationInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="authStack" />
+		
     <action name="fetchAccountStatement" class="com.letsCode.controllers.AccountStatementAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">/AccountPages/AccountStatementPage.jsp</result>
     </action>
-</package>
-<package name="changePassword" extends="struts-default">
+    
     <action name="ChangeNetBankingPassword" class="com.letsCode.controllers.ChangePasswordAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">/Home.jsp</result>
         <result name="error">/index.jsp</result>
 
     </action>
-</package>
-
-<package name="changeAtmPin" extends="struts-default">
+    
+    
     <action name="ChangeAtmPin" class="com.letsCode.controllers.ChangeAtmPinAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">/Home.jsp</result>
         <result name="error">/index.jsp</result>
         <result name="input">AccountPages/ChangeAtmPin.jsp</result>
         
+        
     </action>
-</package>
 
- <package name="Databaseinitialization" namespace="/"  extends="struts-default">
     <action name="initializeDatabase" class="com.letsCode.controllers.DatabaseInitializationAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">/index.jsp</result>
     </action>
-</package>
 
- <package name="FundTransferAccNumber" namespace="/"  extends="struts-default">
     <action name="AccountNumberFundTransfer" class="com.letsCode.controllers.AccountFundTransferAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">/Home.jsp</result>
     </action>
-</package>
     
- <package name="FundTransferMobNumber" namespace="/"  extends="struts-default">
     <action name="MobileNumberFundTransfer" class="com.letsCode.controllers.MobileNumberFundTransferAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">/Home.jsp</result>
     </action>
-</package>
     
- <package name="Fetchcards" namespace="/"  extends="struts-default">
+    
     <action name="FetchCard" class="com.letsCode.controllers.FetchCardAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">AccountPages/BlockCard.jsp</result>
     </action>
-</package>    
-
-<package name="Fetchcardpinchange" namespace="/"  extends="struts-default">
-    <action name="FetchCardPinChange" class="com.letsCode.controllers.FetchCardAction">
+    
+    
+        <action name="FetchCardPinChange" class="com.letsCode.controllers.FetchCardAction">
+			<interceptor-ref name="authenticationInterceptor" />
         <result name="success">AccountPages/ChangeAtmPin.jsp</result>
     </action>
-</package>   
-
-<package name="blockCard" namespace="/"  extends="struts-default">
+    
+    
     <action name="BlockCard" class="com.letsCode.controllers.BlockCardAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">/Home.jsp</result>
     </action>
-</package>    
-  <package name="allotCard" namespace="/"  extends="struts-default">
+    
+    
+    
     <action name="AllotCard" class="com.letsCode.controllers.NewCardRequestAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">/Home.jsp</result>
     </action>
-</package>   
-
- <package name="Viewcard" namespace="/"  extends="struts-default">
+    
+    
     <action name="ViewCards" class="com.letsCode.controllers.FetchCardAction">
+		<interceptor-ref name="authenticationInterceptor" />
         <result name="success">AccountPages/ViewCards.jsp</result>
     </action>
-</package>  
-
-<package name="downloadstatement" namespace="/" extends="struts-default">
+    
+    
+    
     <action name="DownloadStatement" class="com.letsCode.controllers.AccountStatementDownloadAction">
+		<interceptor-ref name="authenticationInterceptor" />
 		<result name="none" type="stream">
             <param name="inputName">inputStream</param>
             <param name="contentType">application/pdf</param>
@@ -121,7 +140,11 @@
             <param name="bufferSize">1024</param>
         </result>
     </action>
+    
 </package>
+
+
+
 
 
 </struts>
