@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.letsCode.service.AccountService;
 import com.letsCode.service.CardService;
 import com.letsCode.service.EncryptionService;
 
@@ -66,6 +67,8 @@ public class AccountsDao {
             if (accountNumberInteger != null) {
                 accountNumber = accountNumberInteger.intValue();
             }
+            System.out.println("this is json acc num: "+AccountService.mapToJson(accountNumber));
+            
         
         }
         return accountNumber;
