@@ -75,8 +75,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<Accounts>,
 	        httpsession.setAttribute("NetBankingUserId", EncryptedNetBankingUserId);
 	        httpsession.setAttribute("accountNumber", EncryptedAccountNumber);
 
-	            System.out.println(httpsession);
-	            System.out.println(httpsession.getAttribute("NetBankingUserId"));
+//	            System.out.println(httpsession);
+//	            System.out.println(httpsession.getAttribute("NetBankingUserId"));
 	        session.put("NetBankingUserId", EncryptedNetBankingUserId);
             session.put("accountNumber", EncryptedAccountNumber);
 //            session.put("loggedIn", true);

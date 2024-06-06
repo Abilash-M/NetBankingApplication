@@ -64,6 +64,25 @@
         html2pdf().set(opt).from(element).save();
     });
     </script>
+    
+    <!-- document.getElementById('downloadTable').addEventListener('click', function() {
+    var fileUrl = 'path/to/your/textfile.txt'; // Replace with the actual URL of your text file
+
+    fetch(fileUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'StatementTable.txt'; // The filename you want to give to the downloaded file
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => console.error('Error fetching and downloading the file:', error));
+});
+     -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
                 <script src="https://kit.fontawesome.com/4176c29b3b.js" crossorigin="anonymous"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

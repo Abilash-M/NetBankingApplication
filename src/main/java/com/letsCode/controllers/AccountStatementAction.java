@@ -52,9 +52,9 @@ public class AccountStatementAction extends ActionSupport{
 //        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
         int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(SessionService.getSessionAttribute("accountNumber")))));
 //        System.out.println("this is the Account no: " + AccountNumber);
-        System.out.println("befor date"+ FromDate);
+//        System.out.println("befor date"+ FromDate);
         transactions = TransactionsDao.getTransactions(FromDate, ToDate,AccountNumber);
-        System.out.println(transactions);
+//        System.out.println(transactions);
 //        System.out.println(FromDate);
 //        System.out.println(session);
         return SUCCESS;

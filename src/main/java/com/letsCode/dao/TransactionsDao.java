@@ -12,7 +12,7 @@ public class TransactionsDao {
     	String sql = "SELECT * FROM TransactionTable WHERE TransactionDate BETWEEN ? AND ? AND FromAccountNumber = ?";
     	
 
-    	System.out.println("After Date "+ FromDate);
+//    	System.out.println("After Date "+ FromDate);
 //    	int accountNumber=0;
         List<Map<String, Object>> result = DatabaseConnection.select(connection, sql,FromDate,ToDate,AccountNumber);
 

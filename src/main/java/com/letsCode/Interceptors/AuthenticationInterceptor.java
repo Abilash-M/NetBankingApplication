@@ -20,7 +20,7 @@ public class AuthenticationInterceptor implements Interceptor{
 	public String intercept(ActionInvocation invocation) throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
-        String NetBankingUserId="dummy";
+        String NetBankingUserId="";
         try {
         	HttpSession session = ServletActionContext.getRequest().getSession(false);
 //        	System.out.println(session);
