@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.dao.AccountsDao;
 import com.letsCode.service.EncryptionService;
+import com.letsCode.service.SessionService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -26,7 +27,8 @@ public class BalanceEnquiryAction extends ActionSupport implements SessionAware{
 //	        Object accountNumberObj = session.get("accountNumber");
 //	        String accountNumberObj = (String)session.get("accountNumber");
 //            int accountNumber=Integer.parseInt((EncryptionService.decrypt(accountNumberObj)));
-            int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+//            int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+	        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(SessionService.getSessionAttribute("accountNumber")))));
 
             int balance = AccountsDao.getAccountBalance(AccountNumber);
             session.put("balance", balance);

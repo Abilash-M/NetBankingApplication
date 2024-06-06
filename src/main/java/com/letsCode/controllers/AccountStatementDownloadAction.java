@@ -10,6 +10,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Cell;
 import com.letsCode.dao.TransactionsDao;
 import com.letsCode.service.EncryptionService;
+import com.letsCode.service.SessionService;
 import com.letsCode.Model.Transactions;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -52,7 +53,9 @@ public class AccountStatementDownloadAction extends ActionSupport implements Ses
 		
 			
 
-	        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+//	        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+	        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(SessionService.getSessionAttribute("accountNumber")))));
+
 	        HttpServletResponse response = ServletActionContext.getResponse();
 	        response.setContentType("application/pdf");
 	        response.setHeader("Content-Disposition", "attachment; filename=\"StatementTable.pdf\"");

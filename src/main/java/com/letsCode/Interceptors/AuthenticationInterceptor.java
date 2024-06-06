@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.dao.AccountsDao;
 import com.letsCode.service.EncryptionService;
@@ -24,11 +23,11 @@ public class AuthenticationInterceptor implements Interceptor{
         String NetBankingUserId="dummy";
         try {
         	HttpSession session = ServletActionContext.getRequest().getSession(false);
-        	System.out.println(session);
+//        	System.out.println(session);
         	if(session != null) {
         		NetBankingUserId=session.getAttribute("NetBankingUserId").toString();
         	}
-        	System.out.println("post"+ NetBankingUserId);
+//        	System.out.println("post"+ NetBankingUserId);
         	NetBankingUserId=EncryptionService.decrypt(NetBankingUserId);
 //        	System.out.println("post++    " + NetBankingUserId);
         //    NetBankingUserId=(EncryptionService.decrypt((String)session.get("NetBankingUserId")));
@@ -36,9 +35,9 @@ public class AuthenticationInterceptor implements Interceptor{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        System.out.println("bool"+ AccountsDao.checkIfAccountExists(NetBankingUserId));
+//        System.out.println("bool"+ AccountsDao.checkIfAccountExists(NetBankingUserId));
         if(AccountsDao.checkIfAccountExists(NetBankingUserId)) {
-        	System.out.println("invoked");
+//        	System.out.println("invoked");
             invocation.invoke();  
         }
         else {

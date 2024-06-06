@@ -11,6 +11,7 @@ import com.letsCode.dao.AccountsDao;
 import com.letsCode.dao.CardsDao;
 import com.letsCode.service.CardService;
 import com.letsCode.service.EncryptionService;
+import com.letsCode.service.SessionService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class NewCardRequestAction extends ActionSupport implements SessionAware{
@@ -19,7 +20,9 @@ public class NewCardRequestAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	@Override
 	public String execute() throws Exception {
-        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+//        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(SessionService.getSessionAttribute("accountNumber")))));
+
         System.out.println(CardsDao.FindCardFromAccountNumber(AccountNumber,CardType));
         if(CardsDao.FindCardFromAccountNumber(AccountNumber,CardType).isEmpty()) {
             if(CardType.equals("debit")) {

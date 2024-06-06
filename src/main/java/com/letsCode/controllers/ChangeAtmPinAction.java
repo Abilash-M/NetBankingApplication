@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.dao.AccountsDao;
 import com.letsCode.service.EncryptionService;
+import com.letsCode.service.SessionService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ChangeAtmPinAction extends ActionSupport implements SessionAware{
@@ -55,7 +56,8 @@ public class ChangeAtmPinAction extends ActionSupport implements SessionAware{
 	private String TransactionPassword;
 	@Override
 	public String execute() throws Exception {
-        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+//        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(SessionService.getSessionAttribute("accountNumber")))));
 		int pin=AccountsDao.getAtmPin(AccountNumber,getCardNumber());
 //		System.out.println(pin);
 //		System.out.println(getOldPin());

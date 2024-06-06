@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.dao.AccountsDao;
 import com.letsCode.service.EncryptionService;
+import com.letsCode.service.SessionService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ChangePasswordAction extends ActionSupport implements SessionAware{
@@ -35,8 +36,8 @@ public class ChangePasswordAction extends ActionSupport implements SessionAware{
 	@Override
 	public String execute() throws Exception {
 //		int AccountNumber=(int)session.get("accountNumber"); 
-        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
-
+//        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(SessionService.getSessionAttribute("accountNumber")))));
 		String password=AccountsDao.getNetBankingPassword(AccountNumber);
 //		System.out.println(AccountNumber);
 //		System.out.println(OldPassword);

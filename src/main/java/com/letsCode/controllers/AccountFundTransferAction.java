@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.letsCode.dao.AccountsDao;
 import com.letsCode.dao.TransactionsDao;
 import com.letsCode.service.EncryptionService;
+import com.letsCode.service.SessionService;
 import com.opensymphony.xwork2.ActionSupport;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,7 +33,8 @@ public class AccountFundTransferAction extends ActionSupport implements SessionA
 		public String execute() throws Exception {
 	        LocalDate today = LocalDate.now();
 	        String todaysDate=today.toString();
-	        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(session.get("accountNumber")))));
+//	        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(session.get("accountNumber")))));
+	        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(SessionService.getSessionAttribute("accountNumber")))));
 	        int rows=TransactionsDao.transferFunds(AccountNumber, getToAccountNumber(), getAmount(), todaysDate);
 	        int balance=AccountsDao.getAccountBalance(AccountNumber);
             session.put("balance", balance);

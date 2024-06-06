@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.dao.CardsDao;
 import com.letsCode.service.EncryptionService;
+import com.letsCode.service.SessionService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class FetchCardAction extends ActionSupport implements SessionAware{
@@ -15,7 +16,9 @@ public class FetchCardAction extends ActionSupport implements SessionAware{
     private List<Map<String, Object>> cards;
 	@Override
 	public String execute() throws Exception {
-        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+		System.out.println("new sssion"+session);
+//        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(SessionService.getSessionAttribute("accountNumber")))));
 		setCards(CardsDao.FindCardFromAccountNumber(AccountNumber)); 		
 		return SUCCESS;
 	}

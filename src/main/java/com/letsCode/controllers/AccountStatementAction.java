@@ -12,11 +12,12 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.letsCode.dao.TransactionsDao;
 import com.letsCode.service.EncryptionService;
+import com.letsCode.service.SessionService;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AccountStatementAction extends ActionSupport implements SessionAware{
+public class AccountStatementAction extends ActionSupport{
 //	private int accountNumber;
-    private Map<String, Object> session;
+//    private Map<String, Object> session;
 
     
 	public List<Map<String, Object>> transactions;
@@ -41,24 +42,28 @@ public class AccountStatementAction extends ActionSupport implements SessionAwar
 	}
 
 	public String execute() throws Exception {
-		System.out.println(session);
+//		System.out.println(session);
 //		String NetBankingUserId=(EncryptionService.decrypt((String)session.get("NetBankingUserId")));
 //		System.out.println(NetBankingUserId);
 //		if(NetBankingUserId==null) {
 //	        HttpServletResponse res = ServletActionContext.getResponse();
 //	        res.sendRedirect("/index.jsp");
 //		}
-        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+//        int AccountNumber=Integer.parseInt((EncryptionService.decrypt((String)session.get("accountNumber"))));
+        int AccountNumber=Integer.parseInt((EncryptionService.decrypt(String.valueOf(SessionService.getSessionAttribute("accountNumber")))));
+//        System.out.println("this is the Account no: " + AccountNumber);
+        System.out.println("befor date"+ FromDate);
         transactions = TransactionsDao.getTransactions(FromDate, ToDate,AccountNumber);
+        System.out.println(transactions);
 //        System.out.println(FromDate);
-        System.out.println(session);
+//        System.out.println(session);
         return SUCCESS;
     }
 
-	@Override
-	public void setSession(Map<String, Object> session) {
-        this.session = session;
-		
-	}
+//	@Override
+//	public void setSession(Map<String, Object> session) {
+//        this.session = session;
+//		
+//	}
 
 }
