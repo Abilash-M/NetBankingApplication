@@ -72,7 +72,6 @@
     <action name="ChangeNetBankingPassword" class="com.letsCode.controllers.ChangePasswordAction">
         <result name="success">/Home.jsp</result>
         <result name="error">/index.jsp</result>
-
     </action>
     
     
